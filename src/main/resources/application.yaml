@@ -1,0 +1,23 @@
+
+context-path: /api/v1/
+
+server:
+  port: 8090
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/product
+    username: postgres
+    password: m1latDB
+    schema: public
+    driverClassName: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update # Bu k?sm? create, update veya none olarak ayarlayabilirsiniz.
+      show-sql: true # Hibernate taraf?ndan olu?turulan SQL sorgular?n? gösterir.
+    properties:
+      hibernate:
+        format_sql: true

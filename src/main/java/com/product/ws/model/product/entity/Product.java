@@ -1,4 +1,4 @@
-package com.product.ws.model;
+package com.product.ws.model.product.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +24,7 @@ public class Product {
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", updatable = false, nullable = false)
-    protected UUID id;
+    private UUID id;
 
     @Column(name = "name",nullable = false,updatable = false)
     private String name;

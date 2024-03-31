@@ -1,9 +1,11 @@
-
-context-path: /api/v1/
-
+context-path: /api/v1
 server:
   port: 8090
 
+
+springdoc:
+  api-docs:
+    path: /api-docs
 
 spring:
   datasource:
@@ -17,7 +19,7 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update # Bu k?sm? create, update veya none olarak ayarlayabilirsiniz.
-      show-sql: true # Hibernate taraf?ndan olu?turulan SQL sorgular?n? gösterir.
+      show-sql: true # Hibernate taraf?ndan olu?turulan SQL sorgular?n? gï¿½sterir.
     properties:
       hibernate:
         format_sql: true

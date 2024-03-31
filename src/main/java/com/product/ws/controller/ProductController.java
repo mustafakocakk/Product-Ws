@@ -1,8 +1,8 @@
 package com.product.ws.controller;
 
-import com.product.ws.model.Product;
+import com.product.ws.model.product.dto.ProductTypeDTO;
+import com.product.ws.model.product.entity.Product;
 import com.product.ws.service.ProductService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/product")
+@RequestMapping(value = "${context-path}/product")
 public class ProductController {
 
     @Autowired
@@ -23,5 +23,10 @@ public class ProductController {
     ResponseEntity<List<Product>> createUser() {
 
         return ResponseEntity.ok(productService.list());
+    }
+    @PostMapping("/type")
+    ResponseEntity<ProductTypeDTO> addProductType(@RequestBody ProductTypeDTO productTypeDTO) {
+
+        return ResponseEntity.ok(productService.addProductType(productTypeDTO));
     }
 }

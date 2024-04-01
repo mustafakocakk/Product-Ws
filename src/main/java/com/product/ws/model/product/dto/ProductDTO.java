@@ -1,5 +1,6 @@
 package com.product.ws.model.product.dto;
 
+import com.product.ws.model.base.BaseModelDTO;
 import com.product.ws.model.category.dto.CategoryDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,8 +13,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDTO {
-    private UUID id;
+public class ProductDTO  extends BaseModelDTO {
     private String name;
     private List<CategoryDTO> categoryDTOList;
 }

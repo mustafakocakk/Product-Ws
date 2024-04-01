@@ -1,6 +1,7 @@
 package com.product.ws.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.product.ws.model.product.dto.ProductDTO;
 import com.product.ws.model.product.dto.ProductTypeDTO;
 import com.product.ws.model.product.entity.Product;
 import com.product.ws.model.product.entity.ProductType;
@@ -10,22 +11,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
-public class ProductService {
-    @Autowired
-    ProductRepository productRepository;
-    @Autowired
-    ProductTypeRepository productTypeRepository;
+public class ProductService extends BaseService<Product, ProductDTO> {
+    private final ProductRepository productRepository;
+    private final ProductTypeRepository productTypeRepository;
+
     protected static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public List<Product> list() {
-        return  productRepository.findAll();
+    public ProductService(ProductRepository productRepository, ProductTypeRepository productTypeRepository) {
+        super(productRepository);
+        this.productRepository = productRepository;
+        this.productTypeRepository = productTypeRepository;
     }
 
-    public ProductTypeDTO addProductType(ProductTypeDTO productTypeDTO) {
+    public List<Product> list() {
+        return productRepository.findAll();
+    }
+
+
+    public void addType(ProductTypeDTO productTypeDTO) {
         ProductType productType = objectMapper.convertValue(productTypeDTO, ProductType.class);
-        productType = productTypeRepository.save(productType);
-        return objectMapper.convertValue(productType, ProductTypeDTO.class);
+        productTypeRepository.save(productType);
+    }
+
+    public ProductTypeDTO getProductType(UUID id) {
+        Optional<ProductType> byId = productTypeRepository.findById(id);
+        if (byId.isPresent())
+            return objectMapper.convertValue(byId.get(),ProductTypeDTO.class);
+        return null ;
     }
 }

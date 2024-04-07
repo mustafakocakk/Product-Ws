@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -29,6 +30,14 @@ public abstract class BaseController<ENTITY extends BaseModel, DTO extends BaseM
 
         service.save(dto);
         return ResponseEntity.ok(dto).getBody();
+    }
+
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST, produces = {"application/json"})
+    public List<DTO> listAll() {
+
+        List<DTO> list=service.listAll();
+        return ResponseEntity.ok(list).getBody();
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = {"application/json"})

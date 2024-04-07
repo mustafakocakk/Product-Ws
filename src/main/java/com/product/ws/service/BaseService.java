@@ -1,10 +1,12 @@
 package com.product.ws.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.product.ws.model.base.BaseModel;
 import com.product.ws.model.base.BaseModelDTO;
 import com.product.ws.repository.BaseRepository;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,7 +17,7 @@ public abstract class BaseService<Entity extends BaseModel, DTO extends BaseMode
 
     private final BaseRepository<Entity> baseRepo;
 
-    protected BaseService(  BaseRepository<Entity> baseRepo) {
+    protected BaseService(BaseRepository<Entity> baseRepo) {
         this.entityClass = getEntityClass();
         this.baseRepo = baseRepo;
     }
@@ -31,10 +33,10 @@ public abstract class BaseService<Entity extends BaseModel, DTO extends BaseMode
     }
 
     public DTO findModel(UUID id) {
-        if (id==null)
+        if (id == null)
             return null;
         Optional<Entity> referenceById = baseRepo.findById(id);
-        if (referenceById.isPresent()){
+        if (referenceById.isPresent()) {
 
             return objectMapper.convertValue(referenceById.get(), getDtoClass());
         }
@@ -50,7 +52,7 @@ public abstract class BaseService<Entity extends BaseModel, DTO extends BaseMode
 
     public DTO edit(DTO dto) {
         DTO model = findModel(dto.getId());
-        if (model!=null) {
+        if (model != null) {
             Entity modelUpdated = objectMapper.convertValue(dto, getEntityClass());
             baseRepo.saveAndFlush(modelUpdated);
             return dto;
@@ -59,7 +61,7 @@ public abstract class BaseService<Entity extends BaseModel, DTO extends BaseMode
     }
 
     public DTO deleteById(UUID id) {
-        if (id == null){
+        if (id == null) {
 
             System.out.println("hata");
             return null;
@@ -68,5 +70,13 @@ public abstract class BaseService<Entity extends BaseModel, DTO extends BaseMode
         Entity referenceById = baseRepo.getReferenceById(id);
         baseRepo.deleteById(id);
         return objectMapper.convertValue(referenceById, getDtoClass());
+    }
+
+    public List<DTO> listAll() {
+        List<Entity> all = baseRepo.findAll();
+
+        return objectMapper.convertValue(all,
+                new TypeReference<>() {
+                });
     }
 }

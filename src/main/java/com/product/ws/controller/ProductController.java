@@ -31,21 +31,5 @@ public class ProductController extends BaseController<Product, ProductDTO> {
         this.productService = productService;
     }
 
-    @RequestMapping(value = "/type",method = RequestMethod.PUT, produces = {"application/json"})
-    ResponseEntity<ProductTypeDTO> addProductType(@RequestBody ProductTypeDTO productTypeDTO) {
-        productService.addType(productTypeDTO);
-        return ResponseEntity.ok(productTypeDTO);
-    }
 
-    @RequestMapping(value = "/type/list", method = RequestMethod.POST, produces = {"application/json"})
-    ResponseEntity<List<ProductTypeDTO>> listAllProductType() {
-
-        return ResponseEntity.ok(productService.listAllProductType());
-    }
-
-    @RequestMapping(value = "/type/{id}", method = RequestMethod.GET, produces = {"application/json"})
-    ResponseEntity<ProductTypeDTO> getProductType(@PathVariable(name = "id") UUID id) {
-        ProductTypeDTO productTypeDTO = productService.getProductType(id);
-        return ResponseEntity.ok(productTypeDTO);
-    }
 }

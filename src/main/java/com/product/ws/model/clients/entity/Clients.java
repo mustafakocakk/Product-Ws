@@ -29,4 +29,7 @@ public class Clients  extends BaseModel  {
     @Column(name = "phone",nullable = false,updatable = false)
     private String phone;
 
+    @OneToMany(mappedBy = "clients", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Product> products;
+
 }

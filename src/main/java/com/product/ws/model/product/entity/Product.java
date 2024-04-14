@@ -1,10 +1,11 @@
 package com.product.ws.model.product.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.product.ws.enums.ObjProcessorType;
 import com.product.ws.model.base.BaseModel;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import com.product.ws.model.clients.entity.Clients;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,15 @@ import lombok.Setter;
 public class Product extends BaseModel {
 
 
-    @Column(name = "name",nullable = false,updatable = false)
-    private String name;
+    @Column(name = "type",nullable = false,updatable = false)
+    private ObjProcessorType productType;
 
+
+    @Column(name = "summary_price",nullable = false,updatable = false)
+    private String summaryPrice;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id", nullable = false)
+    private Clients clients;
 }

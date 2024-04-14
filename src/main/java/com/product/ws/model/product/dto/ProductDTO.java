@@ -1,7 +1,10 @@
 package com.product.ws.model.product.dto;
 
+import com.product.ws.enums.ObjProcessorType;
 import com.product.ws.model.base.BaseModelDTO;
 import com.product.ws.model.category.dto.CategoryDTO;
+import com.product.ws.model.clients.dto.ClientsDTO;
+import com.product.ws.model.clients.entity.Clients;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +17,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDTO  extends BaseModelDTO {
-    private String name;
-    private List<CategoryDTO> categoryDTOList;
+    private ObjProcessorType productType;
+    private String summaryPrice;
+    private ClientsDTO clients;
+
 }

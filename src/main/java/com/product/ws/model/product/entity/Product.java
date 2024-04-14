@@ -5,7 +5,6 @@ import com.product.ws.enums.ObjProcessorType;
 import com.product.ws.model.base.BaseModel;
 import com.product.ws.model.clients.entity.Clients;
 import jakarta.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

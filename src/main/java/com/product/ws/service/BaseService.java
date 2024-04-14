@@ -1,8 +1,5 @@
 package com.product.ws.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.reflect.TypeToken;
 import com.product.ws.model.base.BaseModel;
 import com.product.ws.model.base.BaseModelDTO;
 import com.product.ws.repository.BaseRepository;

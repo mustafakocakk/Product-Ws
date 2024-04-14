@@ -1,6 +1,8 @@
 package com.product.ws.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.reflect.TypeToken;
 import com.product.ws.model.base.BaseModel;
 import com.product.ws.model.base.BaseModelDTO;
 import com.product.ws.repository.BaseRepository;
@@ -16,6 +18,7 @@ public abstract class BaseService<Entity extends BaseModel, DTO extends BaseMode
     protected final Class<Entity> entityClass;
 
     private final BaseRepository<Entity> baseRepo;
+
 
     protected BaseService(BaseRepository<Entity> baseRepo) {
         this.entityClass = getEntityClass();
@@ -67,16 +70,23 @@ public abstract class BaseService<Entity extends BaseModel, DTO extends BaseMode
             return null;
         }
 
-        Entity referenceById = baseRepo.getReferenceById(id);
-        baseRepo.deleteById(id);
-        return objectMapper.convertValue(referenceById, getDtoClass());
+
+
+        Optional<Entity> referenceById = baseRepo.findById(id);
+        if (referenceById.isPresent()) {
+            baseRepo.deleteById(id);
+            return objectMapper.convertValue(referenceById.get(), getDtoClass());
+        }
+        return null;
+
     }
 
     public List<DTO> listAll() {
         List<Entity> all = baseRepo.findAll();
+        return objectMapper.convertValue(all, objectMapper.getTypeFactory().constructCollectionType(List.class, getDtoClass()));
 
-        return objectMapper.convertValue(all,
-                new TypeReference<>() {
-                });
+
+
+
     }
 }

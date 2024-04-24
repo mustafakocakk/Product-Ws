@@ -1,5 +1,6 @@
-package com.product.ws.model.clients.entity;
+package com.product.ws.model.client.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.product.ws.model.base.BaseModel;
 import com.product.ws.model.product.entity.Product;
 import jakarta.persistence.*;
@@ -11,12 +12,12 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "client")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Clients  extends BaseModel  {
+public class Client extends BaseModel {
     @Column(name = "name",nullable = false,updatable = false)
     private String name;
 
@@ -29,7 +30,9 @@ public class Clients  extends BaseModel  {
     @Column(name = "phone",nullable = false,updatable = false)
     private String phone;
 
-    @OneToMany(mappedBy = "clients", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Product> products;
+    @JsonIgnoreProperties("client")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Product> productList;
+
 
 }

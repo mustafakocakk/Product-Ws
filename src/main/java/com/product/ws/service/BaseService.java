@@ -1,5 +1,6 @@
 package com.product.ws.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.product.ws.model.base.BaseModel;
 import com.product.ws.model.base.BaseModelDTO;
 import com.product.ws.repository.BaseRepository;
@@ -9,10 +10,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.product.ws.service.ProductService.objectMapper;
 
 public abstract class BaseService<Entity extends BaseModel, DTO extends BaseModelDTO> {
     protected final Class<Entity> entityClass;
+    protected final ObjectMapper objectMapper = new ObjectMapper();
 
     private final BaseRepository<Entity> baseRepo;
 
@@ -36,11 +37,7 @@ public abstract class BaseService<Entity extends BaseModel, DTO extends BaseMode
         if (id == null)
             return null;
         Optional<Entity> referenceById = baseRepo.findById(id);
-        if (referenceById.isPresent()) {
-
-            return objectMapper.convertValue(referenceById.get(), getDtoClass());
-        }
-        return null;
+        return referenceById.<DTO>map(entity -> objectMapper.convertValue(entity, getDtoClass())).orElse(null);
     }
 
     public DTO save(DTO dto) {

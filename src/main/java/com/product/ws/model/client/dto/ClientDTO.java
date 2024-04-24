@@ -1,8 +1,6 @@
-package com.product.ws.model.clients.dto;
+package com.product.ws.model.client.dto;
 
 import com.product.ws.model.base.BaseModelDTO;
-import com.product.ws.model.clients.entity.Clients;
-import com.product.ws.model.product.dto.ProductDTO;
 import com.product.ws.model.product.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClientsDTO extends BaseModelDTO {
+public class ClientDTO extends BaseModelDTO {
 
     private String name;
     private String surname;
@@ -23,8 +21,8 @@ public class ClientsDTO extends BaseModelDTO {
     private String location;
 
     private String phone;
+    private List<Product> productList;
 
-    private List<ProductDTO> products;
 
 
 }

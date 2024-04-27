@@ -10,9 +10,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 import static io.swagger.v3.oas.annotations.media.Schema.AccessMode.READ_ONLY;
@@ -31,4 +33,9 @@ public abstract class BaseModel implements Serializable,WithIDEntity {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", updatable = false, nullable = false)
     protected UUID id;
+
+    @Schema(accessMode = READ_ONLY)
+    @Column(name = "created_at", updatable = false)
+    @CreationTimestamp
+    protected OffsetDateTime createdAt;
 }

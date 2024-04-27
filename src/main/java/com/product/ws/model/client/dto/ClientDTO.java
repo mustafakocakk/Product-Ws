@@ -1,7 +1,8 @@
 package com.product.ws.model.client.dto;
 
 import com.product.ws.model.base.BaseModelDTO;
-import com.product.ws.model.product.entity.Product;
+import com.product.ws.model.payment.dto.PaymentDTO;
+import com.product.ws.model.productTransaction.dto.ProductTransactionDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,9 @@ public class ClientDTO extends BaseModelDTO {
     private String location;
 
     private String phone;
-    private List<Product> productList;
+    private List<ProductTransactionDTO> productTransactionList;
+
+    private List<PaymentDTO> paymentList;
 
 
 

@@ -9,7 +9,7 @@ springdoc:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/product
+    url: jdbc:postgresql://localhost:5432/prod_mng
     username: postgres
     password: test123
     schema: public

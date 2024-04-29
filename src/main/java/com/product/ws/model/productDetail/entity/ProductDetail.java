@@ -2,6 +2,7 @@ package com.product.ws.model.productDetail.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.product.ws.model.base.BaseModel;
+import com.product.ws.model.client.entity.Client;
 import com.product.ws.model.productTransaction.entity.ProductTransaction;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

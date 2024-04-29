@@ -1,6 +1,9 @@
 package com.product.ws.api.stock;
 
 import com.product.ws.api.base.BaseController;
+import com.product.ws.api.productTransaction.ProductTransactionService;
+import com.product.ws.model.productTransaction.dto.ProductTransactionDTO;
+import com.product.ws.model.productTransaction.entity.ProductTransaction;
 import com.product.ws.model.stock.dto.StockDTO;
 import com.product.ws.model.stock.entity.Stock;
 import org.springframework.web.bind.annotation.RequestMapping;

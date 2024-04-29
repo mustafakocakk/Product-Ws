@@ -1,10 +1,10 @@
 package com.product.ws.api.productAttribute;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.product.ws.api.base.BaseRepository;
-import com.product.ws.api.base.BaseService;
 import com.product.ws.model.productAttribute.dto.productAttributeDTO;
 import com.product.ws.model.productAttribute.entity.ProductAttribute;
+import com.product.ws.api.base.BaseRepository;
+import com.product.ws.api.base.BaseService;
 import org.springframework.stereotype.Service;
 
 @Service

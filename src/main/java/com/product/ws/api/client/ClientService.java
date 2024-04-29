@@ -1,9 +1,9 @@
 package com.product.ws.api.client;
 
-import com.product.ws.api.base.BaseRepository;
-import com.product.ws.api.base.BaseService;
 import com.product.ws.model.client.dto.ClientDTO;
 import com.product.ws.model.client.entity.Client;
+import com.product.ws.api.base.BaseRepository;
+import com.product.ws.api.base.BaseService;
 import org.springframework.stereotype.Service;
 
 

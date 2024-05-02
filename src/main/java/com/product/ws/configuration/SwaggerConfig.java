@@ -22,7 +22,7 @@ public class SwaggerConfig {
         myContact.setEmail("your.email@gmail.com");
 
         Info information = new Info()
-                .title("Pruduct Management System API")
+                .title("Product Management API")
                 .version("1.0")
                 .description("This API exposes endpoints to manage employees.")
                 .contact(myContact);

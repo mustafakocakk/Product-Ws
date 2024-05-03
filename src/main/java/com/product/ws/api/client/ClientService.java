@@ -16,4 +16,8 @@ public class ClientService extends BaseService<Client, ClientDTO> {
         super(baseRepo);
         this.clientRepository = clientRepository;
     }
+
+    public ClientDTO test() {
+         throw  new RuntimeException("invalid req");
+    }
 }

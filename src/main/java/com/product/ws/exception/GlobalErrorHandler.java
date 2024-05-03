@@ -1,4 +1,4 @@
-package com.product.ws.api.exception;
+package com.product.ws.exception;
 
 import com.product.ws.model.base.GenericResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +13,7 @@ import java.nio.file.AccessDeniedException;
 public class GlobalErrorHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({RuntimeException.class})
-    ResponseEntity<?> handleDisabledException(Exception exception, HttpServletRequest httpServletRequest) {
+    ResponseEntity<Object> handleException(Exception exception, HttpServletRequest httpServletRequest) {
         int statusCode = 400;
         if (exception instanceof AccessDeniedException)
             statusCode = 403;

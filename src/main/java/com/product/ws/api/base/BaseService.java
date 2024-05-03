@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.product.ws.api.util.SerializationUtils.getMapper;
+import static com.product.ws.util.SerializationUtils.getMapper;
 
 public abstract class BaseService<Entity extends BaseModel, DTO extends BaseModelDTO> {
     protected final Class<Entity> entityClass;
